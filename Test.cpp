@@ -13,8 +13,8 @@ int main() {
 		const char* arrPrompt = strPrompt.data();
 		
 		// test prints dont need
-		std::cout << strPrompt;
-		std::cout << strPrompt.length();
+		//std::cout << strPrompt;
+		int myLength = strPrompt.length();
 		// osinfo
 		
 		//const char* arrPrompt = strPrompt.data();
@@ -34,23 +34,25 @@ int main() {
 		arrPrompt[n] = strPrompt[n];
 		n = n+1;
 		}
+		*//*
+		
+		int ccounter = 0;
+		for (arrPrompt, ){
+			ccounter = ccounter+1;
+		}
+		
 		*/
 		
 		
-		
-		
-		
-		
-		
-		
+		/*
 		// test section: we need to determine what my array even is, as it is being SUS
 		int i = 0;
-		while (i <= (signed)(sizeof(arrPrompt)-1)){
+		while (i <= arrPrompt.length()){
 			std::cout << arrPrompt[i];
 			std::cout << "\n";
 			i = i +1;
 		}
-		
+		*/
 		
 		
 		
@@ -60,7 +62,12 @@ int main() {
 		int iterator = 0;
 		bool started = false;
 		std::string stringBuild = "";
-		while (iterator <=  (signed)(sizeof(arrPrompt)-1) ){
+		
+		//tester
+		std::cout << ((signed)(sizeof(arrPrompt))/((signed)(sizeof(arrPrompt[0]))));
+		std::cout << myLength;
+		
+		while (iterator <=  myLength){
 			if (started == false){
 				// spaces before
 				if (arrPrompt[iterator] != ' '){ // if not a space, add to string
@@ -78,16 +85,16 @@ int main() {
 					iterator = iterator + 1;
 				}
 				if (arrPrompt[iterator] == ' ' && numSpaces == 0){ // space, count 0
-					stringBuild = stringBuild + '3';//arrPrompt[iterator];
+					stringBuild = stringBuild + ' ';//arrPrompt[iterator];
 					numSpaces = 1;
 					iterator = iterator + 1;
 				}
-				if (arrPrompt[iterator] == ' ' && numSpaces == 1){ // space, count 1
+				else if (arrPrompt[iterator] == ' ' && numSpaces == 1){ // space, count 1
 					iterator = iterator + 1;
 				}
 			}
-			std::string testStr = "building: " + stringBuild;
-			std::cout << testStr;
+			//std::string testStr = "building: " + stringBuild;
+			//std::cout << testStr;
 		}
 	
 		// spaces after: if last char is a space, use erase method.
@@ -104,15 +111,22 @@ int main() {
 		std::cout << testStr;
 
 		
+		// osifo
+		
+		std::string osA = "osinfo -a";
+		
+		std::string osS =  "osinfo -s";
+		
+		std::string osV = "osinfo -v";
 		
 		
-		if (strPrompt == "osinfo > -a"){
+		if (strPrompt.compare(osA)){
 			system("uname -m");
 		}
-		if (strPrompt == "osinfo > -s"){
+		if (strPrompt.compare(osS)){
 			system("uname -o");
 		}
-		if (strPrompt == "osinfo > -v"){
+		if (strPrompt.compare(osV)){
 			system("cat /etc/os-release");
 		}
 		
