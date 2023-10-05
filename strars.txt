@@ -1,0 +1,32 @@
+#include <iostream>
+#include <fstream>
+#include <sys/stat.h>
+
+int main() {
+    std::string filename = "your_filename_here"; // Replace with the actual filename
+    
+    // Use the stat structure to retrieve file information
+    struct stat fileInfo;
+    
+    if (stat(filename.c_str(), &fileInfo) == 0) {
+        // Extract file type from the fileInfo structure
+        std::string fileType;
+        
+        switch (fileInfo.st_mode & S_IFMT) {
+            case S_IFBLK:  fileType = "block device";            break;
+            case S_IFCHR:  fileType = "character device";        break;
+            case S_IFDIR:  fileType = "directory";               break;
+            case S_IFIFO:  fileType = "FIFO/pipe";               break;
+            case S_IFLNK:  fileType = "symlink";                break;
+            case S_IFREG:  fileType = "regular file";            break;
+            case S_IFSOCK: fileType = "socket";                 break;
+            default:       fileType = "unknown";                break;
+        }
+        
+        std::cout << "File type of '" << filename << "': " << fileType << std::endl;
+    } else {
+        std::cerr << "Error: Unable to retrieve file information." << std::endl;
+    }
+
+    return 0;
+}
